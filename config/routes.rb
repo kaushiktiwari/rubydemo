@@ -1,21 +1,26 @@
 Rails.application.routes.draw do
   
-
- # devise_for :users
-  resources :listings do
-    resources :orders
-  end
-
 devise_for :users do
     get '/users/sign_out' => 'devise/sessions#destroy'
 end
+
+
+
+ # devise_for :users
+  resources :listings do
+    resources :orders, only: [:new, :create]
+  end
+
 
   get 'seller' => "listings#seller"
   
   get 'pages/about'
 
   get 'pages/contact'
-
+  get 'seller' => "listings#seller"
+  get  'sales' => "orders#sales"
+  get 'purchases' => "orders#purchases"
+  
   root 'listings#index'
 
   # The priority is based upon order of creation: first created -> highest priority.
