@@ -1,11 +1,8 @@
 Rails.application.routes.draw do
-  
+  resources :orders
 
  # devise_for :users
-  resources :listings do
-    resources :orders
-  end
-  
+  resources :listings
 devise_for :users do
     get '/users/sign_out' => 'devise/sessions#destroy'
 end
